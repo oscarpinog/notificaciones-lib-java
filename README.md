@@ -26,23 +26,6 @@ git clone https://github.com/oscarpinog/notificaciones-lib-java.git
 * Java 21 (si deseas ejecutarlo localmente)
 * Maven (para gestión de dependencias)
 
-## 🛠️ Tecnologías y Buenas Prácticas
-
-El desarrollo se fundamenta en altos estándares de calidad de software y arquitectura:
-
-* **Patrones de Diseño Implementados:**
-    - **Strategy:** Permite intercambiar los algoritmos de envío (Email, SMS, Slack, etc.) en tiempo de ejecución.
-    - **Facade:** Proporciona una interfaz unificada y simplificada para interactuar con el complejo sistema de notificaciones.
-    - **Builder:** Facilita la construcción paso a paso de objetos complejos, mejorando la legibilidad.
-    - **Factory:** Centraliza la lógica de creación de las distintas instancias de canales.
-
-* **Calidad de Software:**
-    - **Principios SOLID:** Código desacoplado, extensible y con Responsabilidad Única.
-    - **Clean Code:** Código autodocumentado, nombres semánticos y funciones de propósito único.
-    - **Logs (SLF4J/Logback):** Trazabilidad profesional para monitoreo de eventos y errores.
-    - **JavaDoc:** Documentación técnica estructurada en todo el código fuente.
-    - **Unit Testing:** Cobertura de pruebas unitarias robustas con JUnit 5 y Mockito.
-
 ---
 
 ## 🐳 Guía de Docker
@@ -76,6 +59,24 @@ Usa la variable de entorno NOTI_CANAL:
 ### 5. PRUEBA DE EJECUCIÓN CANAL NO VÁLIDO
 docker run -e NOTI_CANAL=WHATSAPP notificaciones-lib-demo
 
+---
+
+## 🛠️ Tecnologías y Buenas Prácticas
+
+El desarrollo se fundamenta en altos estándares de calidad de software y arquitectura:
+
+* **Patrones de Diseño Implementados:**
+    - **Strategy:** Permite intercambiar los algoritmos de envío (Email, SMS, Slack, etc.) en tiempo de ejecución.
+    - **Facade:** Proporciona una interfaz unificada y simplificada para interactuar con el complejo sistema de notificaciones.
+    - **Builder:** Facilita la construcción paso a paso de objetos complejos, mejorando la legibilidad.
+    - **Factory:** Centraliza la lógica de creación de las distintas instancias de canales.
+
+* **Calidad de Software:**
+    - **Principios SOLID:** Código desacoplado, extensible y con Responsabilidad Única.
+    - **Clean Code:** Código autodocumentado, nombres semánticos y funciones de propósito único.
+    - **Logs (SLF4J/Logback):** Trazabilidad profesional para monitoreo de eventos y errores.
+    - **JavaDoc:** Documentación técnica estructurada en todo el código fuente.
+    - **Unit Testing:** Cobertura de pruebas unitarias robustas con JUnit 5 y Mockito.
 ---
 
 ## ⚙️ Configuración del Proyecto
