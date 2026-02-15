@@ -11,6 +11,15 @@ El proyecto está completamente Dockerizado para facilitar su despliegue y prueb
 
 ---
 
+## 🚀 Instalación y Configuración
+
+Siga estos pasos para obtener una copia local del proyecto y ejecutarlo en su entorno de desarrollo.
+
+### 1. Clonación del Repositorio
+Para obtener el código fuente, clone el repositorio utilizando Git. Por defecto, el proyecto se encuentra en la rama principal (**main**):
+
+git clone https://github.com/oscarpinog/notificaciones-lib-java.git
+
 ## 📋 Requisitos
 
 * Docker Desktop (activo)
