@@ -35,29 +35,30 @@ Para validar la librería y sus estrategias, ejecute los siguientes comandos:
 
 ### 1. CREAR LA IMAGEN
 Compila, ejecuta tests y empaqueta la aplicación:
-docker build -t notificaciones-lib-demo .
+docker build -t notificaciones-lib-java .
 
 ### 2. EJECUTAR LA IMAGEN
 Lanza la aplicación con la configuración predeterminada (EMAIL):
-docker run notificaciones-lib-demo
+docker run --rm notificaciones-lib-java
+
 
 ### 3. ELIMINAR LA IMAGEN ESPECÍFICA
-docker rmi -f notificaciones-lib-demo
+docker rmi -f notificaciones-lib-java
 
 ### 4. PRUEBAS DE EJECUCIÓN PARA LOS DIFERENTES CANALES
 Usa la variable de entorno NOTI_CANAL:
 
 * EMAIL:
-  docker run -e NOTI_CANAL=EMAIL notificaciones-lib-demo
+  docker run --rm -e NOTI_CANAL=EMAIL notificaciones-lib-java
 * SMS:
-  docker run -e NOTI_CANAL=SMS notificaciones-lib-demo
+  docker run --rm -e NOTI_CANAL=SMS notificaciones-lib-java
 * PUSH:
-  docker run -e NOTI_CANAL=PUSH notificaciones-lib-demo
+  docker run --rm -e NOTI_CANAL=PUSH notificaciones-lib-java
 * SLACK:
-  docker run -e NOTI_CANAL=SLACK notificaciones-lib-demo
+  docker run --rm -e NOTI_CANAL=SLACK notificaciones-lib-java
 
 ### 5. PRUEBA DE EJECUCIÓN CANAL NO VÁLIDO
-docker run -e NOTI_CANAL=WHATSAPP notificaciones-lib-demo
+docker run -e NOTI_CANAL=WHATSAPP notificaciones-lib-java
 
 ---
 
