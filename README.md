@@ -46,13 +46,17 @@ Lanza la aplicación con la configuración predeterminada (**EMAIL**):
 ### 3. PRUEBAS DE EJECUCIÓN PARA LOS DIFERENTES CANALES
 Usa la variable de entorno `NOTI_CANAL` para alternar entre estrategias:
 
-* **EMAIL:** `docker run --rm -e NOTI_CANAL=EMAIL notificaciones-lib-java`
+* **EMAIL:**
+`docker run --rm -e NOTI_CANAL=EMAIL notificaciones-lib-java`
 
-* **SMS:** `docker run --rm -e NOTI_CANAL=SMS notificaciones-lib-java`
+* **SMS:**
+`docker run --rm -e NOTI_CANAL=SMS notificaciones-lib-java`
 
-* **PUSH:** `docker run --rm -e NOTI_CANAL=PUSH notificaciones-lib-java`
+* **PUSH:**
+`docker run --rm -e NOTI_CANAL=PUSH notificaciones-lib-java`
 
-* **SLACK:** `docker run --rm -e NOTI_CANAL=SLACK notificaciones-lib-java`
+* **SLACK:**
+`docker run --rm -e NOTI_CANAL=SLACK notificaciones-lib-java`
 
 ### 4. PRUEBA DE EJECUCIÓN CANAL NO VÁLIDO
 Lanza el contenedor con un canal no registrado para probar la robustez del sistema:
