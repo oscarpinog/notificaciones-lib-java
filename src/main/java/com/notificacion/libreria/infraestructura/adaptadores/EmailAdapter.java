@@ -24,7 +24,7 @@ public class EmailAdapter implements EstrategiaEnvio {
         .mensajeId(UUID.randomUUID().toString())
         .detalle(String.format("Email enviado a "+ notificacion.getReceptor())+" key: "+apiKey)
         .proveedor(obtenerNombreProveedor())
-        .subject(subject)
+        .subject(subject) //Solo EMAIL tiene subject
         .construir();
         
     }
