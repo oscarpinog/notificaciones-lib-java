@@ -1,9 +1,7 @@
 package com.notificacion.libreria.aplicacion.servicios;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -12,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.notificacion.libreria.aplicacion.puertos.salida.EstrategiaEnvio;
 import com.notificacion.libreria.dominio.enums.TipoCanal;
@@ -19,7 +18,6 @@ import com.notificacion.libreria.dominio.excepciones.ValidacionException;
 import com.notificacion.libreria.dominio.modelos.Notificacion;
 import com.notificacion.libreria.dominio.modelos.ResultadoEnvio;
 import com.notificacion.libreria.infraestructura.factory.FabricaEnvio;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -59,7 +57,7 @@ class NotificacionServiceTest {
                 .construir();
         
         when(fabricaMock.obtenerEstrategia(TipoCanal.SMS)).thenReturn(estrategiaMock);
-        when(estrategiaMock.notificar(noti)).thenReturn(new ResultadoEnvio(true, "ID-1", "OK", "Provider"));
+        when(estrategiaMock.notificar(noti)).thenReturn(new ResultadoEnvio(true, "ID-1", "OK", "Provider",null));
 
         // WHEN: Ejecutamos el envío
         ResultadoEnvio resultado = service.enviar(noti, TipoCanal.SMS);

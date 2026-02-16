@@ -1,24 +1,20 @@
-# 1. Imagen base con JDK 21 y Alpine Linux (ligera y funcional)
-FROM eclipse-temurin:21-jdk-alpine
+# ETAPA 1: Compilación (Builder)
+FROM eclipse-temurin:21-jdk-alpine AS build
 WORKDIR /app
-
-# 2. Instalar Maven (necesario para compilar dentro del contenedor)
 RUN apk add --no-cache maven
-
-# 3. Copiar todos los archivos del proyecto (pom.xml y carpeta src)
 COPY . .
-
-# 4. Compilar, EJECUTAR PRUEBAS UNITARIAS y empaquetar
-# Esto genera el archivo target/notificaciones-app.jar definido en tu pom.
+# Compilamos y generamos el JAR
 RUN mvn clean package
 
-# Si quiero evitar las pruebas unitarias
-# RUN mvn clean package -DskipTests
+# ETAPA 2: Ejecución (Runtime) - Esta es la que queda final
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
 
-# 5. Configuración de ejemplo ejecutable
-# Valor por defecto que puedes sobrescribir con 'docker run -e NOTI_CANAL=...'
+# Copiamos SOLO el JAR generado en la etapa anterior
+COPY --from=build /app/target/notificaciones-app.jar app.jar
+
+# Configuración de entorno
 ENV NOTI_CANAL=EMAIL
 
-# 6. Ejecutar la demo (Clase principal de ejemplos)
-# Usamos el classpath (-cp) apuntando al JAR con el <finalName> de tu pom.
-CMD ["java", "-cp", "target/notificaciones-app.jar", "com.notificacion.libreria.NotificacionesApplication"]
+# Ejecutamos el JAR directamente
+ENTRYPOINT ["java", "-jar", "app.jar"]

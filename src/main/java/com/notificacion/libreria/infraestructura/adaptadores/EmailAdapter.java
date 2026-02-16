@@ -19,13 +19,13 @@ public class EmailAdapter implements EstrategiaEnvio {
 
         System.out.println("||*******************INICIO EMAIL ADAPTER************************||");
         
-        System.out.println("[Email] Enviando via EMAIL con API Key: " + apiKey);
-        return new ResultadoEnvio(
-        	    true, 
-        	    UUID.randomUUID().toString(), 
-        	    String.format("Email enviado a %s \nSubject: %s", notificacion.getReceptor(), subject), 
-        	    obtenerNombreProveedor()
-        	);
+        return new ResultadoEnvio.Builder()
+        .exitoso(true)
+        .mensajeId(UUID.randomUUID().toString())
+        .detalle(String.format("Email enviado a "+ notificacion.getReceptor()))
+        .proveedor(obtenerNombreProveedor())
+        .subject(subject)
+        .construir();
         
     }
 

@@ -23,12 +23,14 @@ public class PushAdapter implements EstrategiaEnvio {
         System.out.println("       Enviando alerta a DeviceToken: " + notificacion.getReceptor());
         System.out.println("       Carga útil: " + notificacion.getContenido());
 
-        return new ResultadoEnvio(
-            true, 
-            UUID.randomUUID().toString(), 
-            "Notificación Push enviada al servicio de mensajería Movile", 
-            obtenerNombreProveedor()
-        );
+        return new ResultadoEnvio.Builder()
+        .exitoso(true)
+        .mensajeId(UUID.randomUUID().toString())
+        .detalle("Notificación Push enviada al servicio de mensajería Movile")
+        .proveedor(obtenerNombreProveedor())
+        .construir();
+        
+
     }
 
     @Override

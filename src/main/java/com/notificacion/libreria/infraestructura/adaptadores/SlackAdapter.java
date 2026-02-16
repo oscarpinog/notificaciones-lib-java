@@ -1,5 +1,7 @@
 package com.notificacion.libreria.infraestructura.adaptadores;
 
+import java.util.UUID;
+
 import com.notificacion.libreria.aplicacion.puertos.salida.EstrategiaEnvio;
 import com.notificacion.libreria.dominio.enums.TipoCanal;
 import com.notificacion.libreria.dominio.modelos.Notificacion;
@@ -17,7 +19,14 @@ public class SlackAdapter implements EstrategiaEnvio {
     	System.out.println("||*******************INICIO SLACK ADAPTER************************||");
         System.out.println("[Slack] Enviando mensaje al Webhook: " + webhookUrl);
         System.out.println("Slack - Registrado bajo extensibilidad.");
-        return new ResultadoEnvio(true, "SLK-" + System.currentTimeMillis(), "Mensaje enviado a Slack", obtenerNombreProveedor());
+		
+        return new ResultadoEnvio.Builder()
+        .exitoso(true)
+        .mensajeId("SLK-" + System.currentTimeMillis())
+        .detalle("Mensaje enviado a Slack")
+        .proveedor(obtenerNombreProveedor())
+        .construir();
+        
     }
 
     @Override public TipoCanal obtenerTipoCanal() { return TipoCanal.SLACK; }

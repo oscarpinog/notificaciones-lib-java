@@ -38,7 +38,6 @@ public class NotificacionesApplication {
      // 1. Configuración dinámica vía Docker / Entorno
         
         String canalEnv = System.getenv("NOTI_CANAL"); 
-        
         TipoCanal canalSeleccionado;
         
      // Buscamos si el String existe dentro de los valores del Enum
@@ -71,7 +70,7 @@ public class NotificacionesApplication {
             Notificacion noti = new Notificacion.Builder()
                     .para("oscarRodriguez@test.com")
                     .conMensaje("Hola, este es un mensaje de NotificacionesOR")
-                    .conAtributo("subject", "Gerardo Pino") // Requerido por nuestra validación de Email
+                    .conAtributo("subject", "Subject,Gerardo Pino") // Requerido por nuestra validación de Email
                     .construir();
 
             // Ejecución y captura del "Result Type"
@@ -82,13 +81,31 @@ public class NotificacionesApplication {
             // 5. Validación del resultado (Success Path)
             if (resultado.exitoso()) {
             	
+            	System.out.println("||************************JSON-RESPONSE***********************||");
+            	
+            	System.out.printf("""
+            		    {
+            		      "exitoso": %b,
+            		      "mensajeId": "%s",
+            		      "detalle": "%s",
+            		      "proveedor": "%s",
+            		      "subject": "%s"
+            		    }
+            		    %n""", 
+            		    resultado.exitoso(), 
+            		    resultado.mensajeId(), 
+            		    resultado.detalle(), 
+            		    resultado.proveedor(),
+            		    resultado.subject()
+            		);
+            	
+            	
             	System.out.println("||*********************************************************||");
-            	System.out.println("||*********************************************************||");
-                System.out.println("✅ ÉXITO: Mensaje enviado vía " + resultado.proveedor());
-                System.out.println("🆔 ID de Seguimiento: " + resultado.mensajeId());
-                System.out.println("📝 Detalle: " + resultado.detalle() );
-                System.out.println("||*********************************************************||");
-                System.out.println("||*********************************************************||");
+//                System.out.println("✅ ÉXITO: Mensaje enviado vía " + resultado.proveedor());
+//                System.out.println("🆔 ID de Seguimiento: " + resultado.mensajeId());
+//                System.out.println("📝 Detalle: " + resultado.detalle() );
+//                System.out.println("||*********************************************************||");
+//                System.out.println("||*********************************************************||");
                 logger.info("Notificación procesada correctamente por el proveedor");
             }
 

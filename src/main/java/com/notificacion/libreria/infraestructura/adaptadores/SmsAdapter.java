@@ -25,12 +25,13 @@ public class SmsAdapter implements EstrategiaEnvio {
         System.out.println("      Para: " + notificacion.getReceptor());
         System.out.println("      Texto: " + notificacion.getContenido());
 
-        return new ResultadoEnvio(
-            true, 
-            UUID.randomUUID().toString(), 
-            "SMS entregado a la red telefónica", 
-            obtenerNombreProveedor()
-        );
+        return new ResultadoEnvio.Builder()
+        .exitoso(true)
+        .mensajeId(UUID.randomUUID().toString())
+        .detalle("SMS entregado a la red telefónica")
+        .proveedor(obtenerNombreProveedor())
+        .construir();
+        
     }
 
     @Override
