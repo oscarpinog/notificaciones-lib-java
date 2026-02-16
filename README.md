@@ -34,6 +34,8 @@ El proyecto incluye un **Dockerfile** optimizado que garantiza un entorno estand
 Para validar la librería y sus estrategias, ejecute los siguientes comandos:
 
 ### 1. CREAR LA IMAGEN
+
+Abra una terminal y sitúese en la raíz del proyecto (donde se encuentra el archivo pom.xml y el Dockerfile).
 Compila, ejecuta tests y empaqueta la aplicación:
 docker build -t notificaciones-lib-java .
 
@@ -41,11 +43,7 @@ docker build -t notificaciones-lib-java .
 Lanza la aplicación con la configuración predeterminada (EMAIL):
 docker run --rm notificaciones-lib-java
 
-
-### 3. ELIMINAR LA IMAGEN ESPECÍFICA
-docker rmi -f notificaciones-lib-java
-
-### 4. PRUEBAS DE EJECUCIÓN PARA LOS DIFERENTES CANALES
+### 3. PRUEBAS DE EJECUCIÓN PARA LOS DIFERENTES CANALES
 Usa la variable de entorno NOTI_CANAL:
 
 * EMAIL:
@@ -57,8 +55,11 @@ Usa la variable de entorno NOTI_CANAL:
 * SLACK:
   docker run --rm -e NOTI_CANAL=SLACK notificaciones-lib-java
 
-### 5. PRUEBA DE EJECUCIÓN CANAL NO VÁLIDO
+### 4. PRUEBA DE EJECUCIÓN CANAL NO VÁLIDO
 docker run -e NOTI_CANAL=WHATSAPP notificaciones-lib-java
+
+### 5. ELIMINAR LA IMAGEN ESPECÍFICA
+docker rmi -f notificaciones-lib-java
 
 ---
 
