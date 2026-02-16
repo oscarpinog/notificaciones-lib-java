@@ -22,7 +22,7 @@ public class EmailAdapter implements EstrategiaEnvio {
         return new ResultadoEnvio.Builder()
         .exitoso(true)
         .mensajeId(UUID.randomUUID().toString())
-        .detalle(String.format("Email enviado a "+ notificacion.getReceptor()))
+        .detalle(String.format("Email enviado a "+ notificacion.getReceptor())+" key: "+apiKey)
         .proveedor(obtenerNombreProveedor())
         .subject(subject)
         .construir();

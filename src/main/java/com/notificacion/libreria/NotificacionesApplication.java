@@ -52,10 +52,11 @@ public class NotificacionesApplication {
 
         canalSeleccionado = canalOpt.get();
 
+        //Canales iniciales
         logger.info("Configuración cargada (Canales: Email, SMS, Push)");
         NotificacionesFacade libreria = new NotificacionesFacade("NOTI_EMAIL_KEY", "NOTI_SMS_KEY", "NOTI_MOVILE_KEY");
         
-        // 2. Extensibilidad: Registro de canal personalizado
+        // 2. EXTENSIBILIDAD: Registro de canal personalizado
         logger.debug("Probando extensibilidad: Agregando adaptador de Slack");
         libreria.registrarCanalPersonalizado(new SlackAdapter("https://hooks.slack.com/services/XYZ"));
 
@@ -64,7 +65,6 @@ public class NotificacionesApplication {
 
         // 4. Intento de envío con Try-Catch (Manejo de Errores)
         try {
-            System.out.println("--- Iniciando Proceso de Notificación ---");
             logger.info("Creando objeto Notificacion mediante Builder");
 
             Notificacion noti = new Notificacion.Builder()
@@ -101,23 +101,16 @@ public class NotificacionesApplication {
             	
             	
             	System.out.println("||*********************************************************||");
-//                System.out.println("✅ ÉXITO: Mensaje enviado vía " + resultado.proveedor());
-//                System.out.println("🆔 ID de Seguimiento: " + resultado.mensajeId());
-//                System.out.println("📝 Detalle: " + resultado.detalle() );
-//                System.out.println("||*********************************************************||");
-//                System.out.println("||*********************************************************||");
                 logger.info("Notificación procesada correctamente por el proveedor");
             }
 
         } catch (ValidacionException e) {
             // Captura errores de datos (ej: falta el subject, email sin @)
             logger.warn("Se detectó un error de validación en los datos de entrada");
-            System.err.println("⚠️ ERROR DE VALIDACIÓN: " + e.getMessage());
             
         } catch (EnvioException e) {
             // Captura errores técnicos (ej: timeout del proveedor, API Key inválida)
             logger.error("Error técnico durante el envío: {}", e.getMessage());
-            System.err.println("❌ ERROR DE ENVÍO: " + e.getMessage());
             if (e.getCause() != null) {
                 System.err.println("🔍 Causa raíz: " + e.getCause().getMessage());
             }
@@ -125,7 +118,6 @@ public class NotificacionesApplication {
         } catch (Exception e) {
             // Captura cualquier otro error inesperado
             logger.error("Se produjo una excepción no controlada: ", e);
-            System.err.println("🛑 ERROR INESPERADO: " + e.getMessage());
         } finally {
             System.out.println("--- Finalización del intento de envío ---");
             logger.info("Finalización del ciclo de ejecución del main");

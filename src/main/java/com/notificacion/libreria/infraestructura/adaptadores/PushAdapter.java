@@ -18,15 +18,11 @@ public class PushAdapter implements EstrategiaEnvio {
         // Las notificaciones push suelen requerir un "dispositivo" o "token"
         // que en este caso viaja en el campo 'receptor'
     	System.out.println("||*******************INICIO PUSH ADAPTER************************||");
-        
-        System.out.println("[Push] Conectando a Movile con config: " + firebaseConfigPath);
-        System.out.println("       Enviando alerta a DeviceToken: " + notificacion.getReceptor());
-        System.out.println("       Carga útil: " + notificacion.getContenido());
 
         return new ResultadoEnvio.Builder()
         .exitoso(true)
         .mensajeId(UUID.randomUUID().toString())
-        .detalle("Notificación Push enviada al servicio de mensajería Movile")
+        .detalle("Notificación Push enviada al servicio de mensajería Movile: "+firebaseConfigPath)
         .proveedor(obtenerNombreProveedor())
         .construir();
         

@@ -15,20 +15,13 @@ public class SmsAdapter implements EstrategiaEnvio {
 
     @Override
     public ResultadoEnvio notificar(Notificacion notificacion) {
-        // En SMS podrías validar que el receptor sea un número de teléfono
-        if (!notificacion.getReceptor().startsWith("+")) {
-            System.out.println("[SMS Warning] El receptor " + notificacion.getReceptor() + " no tiene formato internacional.");
-        }
+
         System.out.println("||*******************INICIO SMS ADAPTER************************||");
-        
-        System.out.println("[SMS] Enviando via Movistar (SID: " + accountSid + ")");
-        System.out.println("      Para: " + notificacion.getReceptor());
-        System.out.println("      Texto: " + notificacion.getContenido());
 
         return new ResultadoEnvio.Builder()
         .exitoso(true)
         .mensajeId(UUID.randomUUID().toString())
-        .detalle("SMS entregado a la red telefónica")
+        .detalle("SMS entregado a la red telefónica -"+accountSid)
         .proveedor(obtenerNombreProveedor())
         .construir();
         
