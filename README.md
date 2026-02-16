@@ -192,4 +192,4 @@ Flexibilidad: Para cambiar un proveedor, basta con crear una nueva implementaci�
 Para agregar canales que no están definidos en el núcleo (como Slack, WhatsApp o Discord), la librería ofrece un mecanismo de registro dinámico que no requiere modificar el código fuente existente:
 // Ejemplo: Extensión de la librería para soportar Slack
 `libreria.registrarCanalPersonalizado(new SlackAdapter("[https://hooks.slack.com/services/]"));`
-# En resumen creando un nuevo adaptador y usando `libreria.registrarCanalPersonalizado(...)` podria crear tantos canales como se deseen.
+### En resumen creando un nuevo adaptador y usando `libreria.registrarCanalPersonalizado(...)` podria crear tantos canales como se deseen.
