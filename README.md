@@ -159,3 +159,37 @@ El enfoque se centró en la agilización técnica mediante las siguientes accion
 * Beneficios: Reducción significativa en los tiempos de investigación,codificacion y depuración (debugging) de errores de contenedorización.
 * Supervisión: El control total, la ejecución de pruebas y la arquitectura final dependieron exclusivamente de mi(Oscar),
 asegurando que las sugerencias de la IA se ajustaran a la realidad técnica del proyecto.
+
+
+# 📢 Librería de Notificaciones Java
+
+Esta librería proporciona una solución robusta y extensible para el envío de notificaciones a través de múltiples canales (Email, SMS, Push, Slack), aplicando patrones de diseño avanzados y principios de arquitectura limpia.
+
+---
+
+## ⚙️ Configuración de Canales y Proveedores
+
+La librería está diseñada bajo el principio de **Inversión de Dependencias**, lo que permite cambiar la lógica de envío (proveedor) sin alterar el código cliente.
+
+### 1. Configuración de Credenciales
+La configuración se centraliza en la clase `NotificacionesFacade`. Al instanciar la fachada, se deben proveer las credenciales iniciales para los canales principales:
+
+
+`NotificacionesFacade libreria = new NotificacionesFacade(
+    "API_KEY_EMAIL", 
+    "API_KEY_SMS", 
+    "API_KEY_PUSH"
+);`
+
+### 2. Personalización de Proveedores (Estrategias)
+Cada canal utiliza la abstracción de una interfaz de estrategia (Pattern Strategy). Esto permite que el motor de la librería sea agnóstico al proveedor real (Gmail, SendGrid, Twilio, etc.):
+
+Estrategias Core: La librería incluye implementaciones por defecto para Email, SMS y Push.
+
+Flexibilidad: Para cambiar un proveedor, basta con crear una nueva implementación de la interfaz de estrategia correspondiente e inyectarla.
+
+### 3. Extensibilidad (Nuevos Canales)
+Para agregar canales que no están definidos en el núcleo (como Slack, WhatsApp o Discord), la librería ofrece un mecanismo de registro dinámico que no requiere modificar el código fuente existente:
+// Ejemplo: Extensión de la librería para soportar Slack
+`libreria.registrarCanalPersonalizado(new SlackAdapter("[https://hooks.slack.com/services/]"));`
+# En resumen creando un nuevo adaptador y usando `libreria.registrarCanalPersonalizado(...)` podria crear tantos canales como se deseen.
