@@ -83,24 +83,6 @@ class NotificacionServiceTest {
         
         assertTrue(ex.getMessage().contains("requiere un atributo 'subject'"));
     }
-   
-
-    // CASO EXITOSO: Datos correctos
-//    @Test
-//    void debePasarValidacionCuandoEmailEsCorrectoConSubject() {
-//        Notificacion noti = new Notificacion.Builder()
-//                .para("valido@test.com")
-//                .conMensaje("Mensaje OK")
-//                .conAtributo("subject", "Asunto importante")
-//                .construir();
-//
-//        // Necesitamos mockear la fábrica para que no explote al buscar la estrategia
-//        EstrategiaEnvio estrategiaMock = mock(EstrategiaEnvio.class);
-//        when(fabricaMock.obtenerEstrategia(TipoCanal.EMAIL)).thenReturn(estrategiaMock);
-//
-//        // Si no lanza excepción, el test pasa
-//        assertDoesNotThrow(() -> service.enviar(noti, TipoCanal.EMAIL));
-//    }
     
     @Test
     void debeLanzarExcepcionCuandoEmailNoTieneArroba() {
